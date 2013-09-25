@@ -75,10 +75,6 @@ module.exports = function storytimeisland_media(book, options){
       all_images.push('images/page' + page.number + '.png');
     })
 
-    for(var i in found){
-      console.log(i);
-    }
-
     var keys = [];
     for(var p in dictionary_sounds){
       keys.push(p);
@@ -130,6 +126,8 @@ module.exports = function storytimeisland_media(book, options){
 
     media.images = allfiles.images;
 
+    var loadimages = [].concat(allfiles.images);
+
     var soundcounter = 0;
 
     function success(){
@@ -163,9 +161,16 @@ module.exports = function storytimeisland_media(book, options){
       }, 10)
     }
 
+    function load_image(imagesrc, nextimage){
+      var img = new Image();
+
+      img.onload = nextimage;
+      img.src = imagesrc;
+    }
+
     function load_next_sound(){
       if(loadsounds.length<=0){
-        self.emit('loaded:all');
+        self.emit('loaded:sounds');
         return;
       }
       var nextsound = loadsounds.shift();
@@ -173,7 +178,18 @@ module.exports = function storytimeisland_media(book, options){
       load_sound(nextsound, load_next_sound);
     }
 
+    function load_next_image(){
+      if(loadimages.length<=0){
+        self.emit('loaded:images');
+        return;
+      }
+      var nextimage = loadimages.shift();
+
+      load_image(nextimage, load_next_image);
+    }
+
     load_next_sound();
+    load_next_image();
   }
 
 
