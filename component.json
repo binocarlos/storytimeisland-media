@@ -1,0 +1,17 @@
+{
+  "name": "storytimeisland-media",
+  "description": "Can load and play sounds/images for a storytime island book",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "binocarlos/storytimeisland-platform",
+    "component/emitter": "*"
+  },
+  "development": {},
+  "main":"index.js",
+  "scripts": [
+    "index.js",
+    "buzz.js"
+  ],
+  "remotes": []
+}
