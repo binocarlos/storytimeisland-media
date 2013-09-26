@@ -8,9 +8,7 @@ var Emitter = require('emitter');
 var Platform = require('storytimeisland-platform');
 var buzz = require('./buzz');
 
-module.exports = function storytimeisland_media(book, options){
-
-  options = options || {};
+module.exports = function storytimeisland_media(book){
 
   var platform = Platform();
 
@@ -215,7 +213,7 @@ module.exports = function storytimeisland_media(book, options){
     }
   }
 
-  media.playpagesounds = function(index){
+  media.playpagesounds = function(index, speech){
 
     this.stopsounds();
     
@@ -226,7 +224,7 @@ module.exports = function storytimeisland_media(book, options){
     
     fx.play();
 
-    if(options.speech_active){
+    if(speech){
       var speech = this.sounds["audio/pagespeech/page" + index];
       speech.play();
     }
