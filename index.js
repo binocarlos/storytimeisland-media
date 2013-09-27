@@ -129,30 +129,18 @@ module.exports = function storytimeisland_media(book){
     var soundcounter = 0;
 
     function success(){
-      console.log('media loaded');
+      
     }
 
     function media_error(e){
-      console.log('media error');
-      console.dir(e);
+      
     }
 
     function load_sound(soundsrc, nextsound){
       var theSound = null;
 
       if(window.$phonegap){
-        console.log('-------------------------------------------');
-        console.log('-------------------------------------------');
-        console.log('-------------------------------------------');
-        console.log('-------------------------------------------');
-        console.log('-------------------------------------------');
-        console.log('-------------------------------------------');
-        console.log('-------------------------------------------');
-        console.log('-------------------------------------------');
-
-        console.log('loading media: ' + soundsrc);
         var src = '/android_asset/www/' + soundsrc + '.mp3';
-        console.log(src);
         theSound = new Media(src, success, media_error);
       }
       else{
@@ -200,10 +188,6 @@ module.exports = function storytimeisland_media(book){
     load_next_sound();
     load_next_image();
   }
-
-  console.log('-------------------------------------------');
-  console.log('IN MEDIA');
-
 
   /*
   
