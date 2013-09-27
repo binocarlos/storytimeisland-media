@@ -23,7 +23,7 @@ module.exports = function storytimeisland_media(book){
     media.stopsounds();
   }
 
-  if(platform.is_phonegap){
+  if(window.$phonegap){
 
     document.addEventListener("backbutton", exitFromApp, false);
     document.addEventListener("pause", exitFromApp, false);
@@ -129,7 +129,7 @@ module.exports = function storytimeisland_media(book){
     var soundcounter = 0;
 
     function success(){
-      // media has loaded
+      console.log('media loaded');
     }
 
     function media_error(e){
@@ -140,8 +140,19 @@ module.exports = function storytimeisland_media(book){
     function load_sound(soundsrc, nextsound){
       var theSound = null;
 
-      if(media.is_android){
+      if(window.$phonegap){
+        console.log('-------------------------------------------');
+        console.log('-------------------------------------------');
+        console.log('-------------------------------------------');
+        console.log('-------------------------------------------');
+        console.log('-------------------------------------------');
+        console.log('-------------------------------------------');
+        console.log('-------------------------------------------');
+        console.log('-------------------------------------------');
+
+        console.log('loading media: ' + soundsrc);
         var src = '/android_asset/www/' + soundsrc + '.mp3';
+        console.log(src);
         theSound = new Media(src, success, media_error);
       }
       else{
@@ -189,6 +200,9 @@ module.exports = function storytimeisland_media(book){
     load_next_sound();
     load_next_image();
   }
+
+  console.log('-------------------------------------------');
+  console.log('IN MEDIA');
 
 
   /*
@@ -260,7 +274,7 @@ module.exports = function storytimeisland_media(book){
     for(var name in this.sounds){
       var snd = self.sounds[name];
 
-      if(self.is_android){
+      if(window.$phonegap){
         snd.seekTo(0);
         snd.stop();
         snd.release();
