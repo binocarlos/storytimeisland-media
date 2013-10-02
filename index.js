@@ -182,7 +182,10 @@ module.exports = function storytimeisland_media(book){
       }
       var nextimage = loadimages.shift();
 
-      load_image(nextimage, load_next_image);
+      load_image(nextimage, function(){
+        self.emit('loaded:image', nextimage)
+        load_next_image();
+      });
     }
 
     load_next_sound();
