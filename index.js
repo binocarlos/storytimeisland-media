@@ -174,6 +174,8 @@ module.exports = function storytimeisland_media(book){
 
       load_sound(nextsound, load_next_sound);
     }
+    
+    var imgindex = 0;
 
     function load_next_image(){
       if(loadimages.length<=0){
@@ -183,7 +185,8 @@ module.exports = function storytimeisland_media(book){
       var nextimage = loadimages.shift();
 
       load_image(nextimage, function(){
-        self.emit('loaded:image', nextimage)
+        self.emit('loaded:image', nextimage, imgindex);
+        imgindex++;
         load_next_image();
       });
     }
