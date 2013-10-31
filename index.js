@@ -139,7 +139,7 @@ module.exports = function storytimeisland_media(book){
     function load_sound(soundsrc, nextsound){
       var theSound = null;
 
-      if(window.$phonegap){
+      if(platform.is_android){
         var src = '/android_asset/www/' + soundsrc + '.mp3';
         theSound = new Media(src, success, media_error);
       }
